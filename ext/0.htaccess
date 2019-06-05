@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} !^qcs\.antcase\.net$ [NC]
+RewriteRule (.*) http://qcs.antcase.com/$1 [L,R=301]
+
+RewriteCond %{REQUEST_URI} ^\/static\/ [NC]
+RewriteCond %{QUERY_STRING} !^(.*)?Rewrite
+
+RewriteRule ^(.*)$ /%{REQUEST_URI}/%{REQUEST_URI}/$1?Rewrite [L,QSA]
+</IfModule>
